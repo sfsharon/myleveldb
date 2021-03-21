@@ -5,9 +5,11 @@
 int main()
 {
     leveldb::DB* db;
-    
-    
-    printf ("Hello World\n");
+    leveldb::Options options;
+    options.create_if_missing = true;
+    leveldb::Status status = leveldb::DB::Open(options, "/tmp/testdb", &db);
+    assert(status.ok());
+    printf ("Hello leveldb\n");
 
     return 0;    
 }
